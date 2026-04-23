@@ -4,7 +4,7 @@ import { queryClientInstance } from '@/lib/query-client'
 import { pagesConfig } from './pages.config'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
-import { AuthProvider, useAuth } from '@/lib/AuthContext';
+import { AuthProvider, useAuth } from '@/lib/AuthContext'; // Нахуй тебе контекст, используй rtk-query
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
 import AdminLessonMaterials from './pages/AdminLessonMaterials';
