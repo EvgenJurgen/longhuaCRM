@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
+// Весь русский текст лучше убрать. Использовать i18n для текста который будет виден пользователю
 const adminNav = [
   { name: "Главная", icon: LayoutDashboard, page: "Dashboard" },
   { name: "Расписание", icon: Calendar, page: "Schedule" },
@@ -53,7 +54,15 @@ export default function Layout({ children, currentPageName }) {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
+/*
+Загружать пользователя лучше после входа в приложение и при монтировании этого компонента.
+useEffect(() => {
+    loadUser();
+  }, []);
 
+  Лучше использовать rtk-query для запросов и хранения данных вместо useState.
+  Чтобы такие данные как пользователь хранились в одном месте, а не каждый раз запрашивались
+*/
   useEffect(() => {
     loadUser();
   }, [location.pathname]);
@@ -68,6 +77,9 @@ export default function Layout({ children, currentPageName }) {
     } catch (e) {
       // not logged in
     }
+    /*
+    Здксь лучше setLoading(false) поместить в finally
+    */
     setLoading(false);
   };
 
@@ -102,7 +114,7 @@ export default function Layout({ children, currentPageName }) {
     );
   }
 
-  const role = user.role || "pending";
+  const role = user.role || "pending"; // для ролей, статусов и подобного лучше использовать глобальные константы. Если решишь поменять или добавить, ахуеешь потом по проекту менять
 
   // Redirect pending/user roles to Welcome page (unless already there)
   if ((role === "pending" || role === "user") && currentPageName !== "Welcome") {
