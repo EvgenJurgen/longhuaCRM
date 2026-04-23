@@ -47,7 +47,7 @@ export default function MaterialsHub() {
   }, []);
 
   const loadData = async () => {
-    const me = await base44.auth.me();
+    const me = await base44.auth.me(); // Не запрашиваем каждый разтекущего пользователя
     setUser(me);
 
     const [allMats, c] = await Promise.all([
