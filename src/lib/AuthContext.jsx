@@ -105,7 +105,7 @@ export const AuthProvider = ({ children }) => {
       
       // If user has default 'user' role, check if they already have a Teacher or Student record
       // to auto-assign the correct role, otherwise set to pending
-      if (currentUser.role === 'user') {
+      if (currentUser.role === 'user') { // Вся эта логика с ролями должна быть на беке
         const [teacherRecords, studentRecords] = await Promise.all([
           base44.entities.Teacher.filter({ user_id: currentUser.id }),
           base44.entities.Student.filter({ user_id: currentUser.id }),
