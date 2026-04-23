@@ -21,6 +21,7 @@ export default function Payments() {
     setPayments(p);
     setStudents(s);
     setLoading(false);
+    //Переписать это с учнтом что может упасть ошибка
   };
 
   useEffect(() => { load(); }, []);
