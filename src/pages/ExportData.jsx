@@ -27,7 +27,7 @@ export default function ExportData() {
       base44.entities.Teacher.list(),
     ]).then(([s, p, l, t]) => {
       setStudents(s); setPayments(p); setLessons(l); setTeachers(t);
-      setLoading(false);
+      setLoading(false); //setLoading(false); нужно в finally указать
     });
   }, []);
 
